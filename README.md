@@ -28,6 +28,8 @@
     ```txt
     git --version 
     ```
+    
+# 실행방법
   * 프로젝트 clone 받기
     ```txt
     git clone https://github.com/kim-jong-hyun1811/short-url
