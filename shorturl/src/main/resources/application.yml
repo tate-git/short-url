@@ -1,0 +1,18 @@
+server:
+  port: 8080
+
+short-root-path: http://localhost/urls/
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver    url: jdbc:mysql://192.168.1.140:3306/mysql?serverTimezone=UTC&characterEncoding=UTF-8
+    username: root
+    password: 1qaz2wsx
+
+mybatis:
+  type-aliases-package: com.kjh.shorturl.entity
+  mapper-locations:  - classpath:com/kjh/shorturl/mapper/*Mapper.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+  

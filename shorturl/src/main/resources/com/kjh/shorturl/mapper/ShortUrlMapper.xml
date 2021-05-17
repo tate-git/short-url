@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kjh.shorturl.mapper.ShortUrlMapper">
+	
+	<select id="getShortUrl" resultType="ShortUrl">
+		/* ShortUrlMapper.getShortUrl */
+		SELECT
+			SHORTING_URL
+		FROM
+			SHORT_URL
+		WHERE
+			PROTOCOL = #{protocol}
+		AND
+			HOST = #{host}
+		AND
+			PORT = #{port}
+		AND
+			PATHNAME = #{pathname}
+	</select>
+	
+	<insert id="addShortUrl" useGeneratedKeys="true" keyProperty="shortUrlIdx">
+		/* ShortUrlMapper.addShortUrl */
+		INSERT INTO SHORT_URL (
+			PROTOCOL
+			, HOST
+			, PORT
+			, PATHNAME
+			, REQUEST_COUNT
+		) VALUES (
+			#{protocol}
+			, #{host}
+			, #{port}
+			, #{pathname}
+			, #{requestCount}
+		)
+	</insert>
+	
+	<update id="modifyShortUrl">
+		/* ShortUrlMapper.modifyShortUrl */
+		UPDATE
+			SHORT_URL
+		SET
+			SHORTING_URL = #{shortingUrl}
+		WHERE
+			SHORT_URL_IDX = #{shortUrlIdx}
+	</update>
+	
+	<select id="getOriginMappingUrl" resultType="ShortUrl">
+		/* ShortUrlMapper.getOriginMappingUrl */
+		SELECT
+			SHORT_URL_IDX
+			, PROTOCOL
+			, HOST
+			, PORT
+			, PATHNAME
+		FROM
+			SHORT_URL
+		WHERE
+			SHORT_URL_IDX = #{shortUrlIdx}
+	</select>
+	
+	<update id="modifyRequestCount">
+		/* ShortUrlMapper.modifyRequestCount */
+		UPDATE
+			SHORT_URL
+		SET
+			REQUEST_COUNT = REQUEST_COUNT + 1
+		WHERE
+			SHORT_URL_IDX = #{shortUrlIdx}
+	</update>
+	
+</mapper>

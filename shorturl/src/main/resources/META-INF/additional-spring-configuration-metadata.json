@@ -1,0 +1,9 @@
+{
+	"properties": [
+		{
+			"name": "short-root-path",
+			"type": "java.lang.String",
+			"description": "short url을 생성하기위한 루트경로"
+		}
+	]
+}

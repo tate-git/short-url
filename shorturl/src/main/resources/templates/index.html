@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Create ShortUrl</title>
+	</head>
+	<body>
+		<h1>Create ShortUrl</h1>
+		
+		<h3>input Url</h3>
+		<input type="text" id="request-url">
+		<input type="button" id="add-short-url" value="add">
+		
+		<h3>result ShortUrl</h3>
+		<div id="short-url"></div>
+		
+		<script type="text/javascript">
+			document.getElementById("add-short-url").addEventListener("click", function() {
+				const requestUrl = document.getElementById("request-url");
+				
+				if (requestUrl.value.split(" ").join("") == "") {
+					alert("url을 입력해주세요.");
+					requestUrl.value = "";
+					requestUrl.focus();
+					return;
+				}
+				
+				try {
+					const requestBody = {};
+					const url = new URL(requestUrl.value);
+
+					requestBody.protocol = url.protocol + "//";
+					requestBody.host = url.hostname;
+					
+					if (!url.port) {
+						requestBody.port = url.protocol == "http:" ? "80" : "443";
+					} else {
+						requestBody.port = url.port;	
+					}
+					
+					requestBody.pathname = url.pathname;
+
+					fetch("/urls", {
+						method : "POST"
+						, body : JSON.stringify(requestBody)
+						, headers : {
+							"Content-Type" : "application/json;charset=UTF-8"
+						}
+					})
+					.then(response => response.json())
+					.then(data => {
+						if (data.shortingUrl) {
+							alert("shortUrl이 생성되었습니다.");
+							document.getElementById("short-url").innerText = data.shortingUrl;
+						} else {
+							alert(data.message);
+						} 
+					})
+				} catch (e) {
+					alert("잘못된 형식의 url입니다.");
+					requestUrl.value = "";
+					requestUrl.focus();
+				} 
+			});	
+		</script>
+	</body>
+</html>
