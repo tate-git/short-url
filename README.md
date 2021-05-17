@@ -12,6 +12,11 @@
   * Ubuntu 18.04
   
 * 환경구축
+  * 패키지 업데이트
+    ```txt
+    sudo apt-get update
+    ```
+
   * JAVA 설치
     ```txt
     sudo apt-get install openjdk-8-jdk
