@@ -69,9 +69,6 @@
   
   * URL Shortening Key는 8 Character 이내로 생성
     * 해당 URL 값을 base62 방식으로 인코딩 및 디코딩 방법을 활용
-    * 참고문서
-      * https://rocksea.tistory.com/348
-      * https://jungahshin.tistory.com/15
   
   <br>
 
