@@ -54,6 +54,7 @@
   * 애플리케이션 종료
     ```txt
     sh shutdown.sh
+    해당 sh파일 실행시 'killall' command not found 발생시 sudo apt-get install psmisc로 killall 명령어 사용가능한 패키지 다운
     ```
     
 # 개발환경
