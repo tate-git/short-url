@@ -1,2 +1,2 @@
 #!/bin/bash
-nohup killall -15 java &
+nohup sudo kill -15 $(lsof -t -i:8080) &
