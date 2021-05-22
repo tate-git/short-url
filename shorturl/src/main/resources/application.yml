@@ -4,10 +4,12 @@ server:
 short-root-path: http://localhost:8080/urls/
 
 spring:
+  h2:
+    console:
+      enabled: true
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver    url: jdbc:mysql://180.150.211.62:3306/kjh?serverTimezone=UTC&characterEncoding=UTF-8
-    username: ENC(ksi19zSTBI35cTwSYSBWUlUjI588P9cIEjGkUK5CUB5kxvHt33sWhmdHZRCBBsx6)
-    password: ENC(x8uhLGD27f1AWMbK2r6SjkGHoA+TGy8e/lvZUkbHe241bAvA0p7s2MGKL7zJwZ5f)
+    initialization-mode: always
+    schema:    - classpath:schema.sql
 
 mybatis:
   type-aliases-package: com.kjh.shorturl.entity
